@@ -11,22 +11,23 @@ else
 	AM_CFLAGS = $(CORE_CFLAGS) $(DEBUG_CFLAGS)	
 endif
 
-
-bin_PROGRAMS =
-
 CORE_SOURCES += \
 
 POSIX_SOURCES += \
 
 WINDOWS_SOURCES += \
 
+bin_PROGRAMS = rlayout
+
 if BUILDING_FOR_POSIX
-	bin_PROGRAMS += rlayout
-	rlayout_SOURCES += $(CORE_SOURCES) $(POSIX_SOURCES)
+	rlayout_SOURCES = $(CORE_SOURCES) $(POSIX_SOURCES)
+	# gcc flags
+endif
+	
+if BUILDING_FOR_WINDOWS
+	rlayout_SOURCES = $(CORE_SOURCES) $(WINDOWS_SOURCES)
+	# mingw flags
 endif
 
-if BUILDING_FOR_WINDOWS
+# Use mingw as cygwin is only a compatibility layer, i.e. requires applications to be shipped with cygwin.dll
 # May have to add specific flags for mingw to get support for certain features, e.g. threads
-	bin_PROGRAMS += rlayout_win
-	rlayout_win_SOURCES += $(CORE_SOURCES) $(WINDOWS_SOURCES)
-endif

@@ -1,16 +1,15 @@
-CORE_CPPFLAGS =
+CORE_CFLAGS = -Wall -Wextra -Wshadow -Wpointer-arith -Wcast-qual \
+	-Wmissing-prototypes -Wstrict-prototypes -Werror -pedantic -m64
+	
+DEBUG_CFLAGS = -g -Og
 
-DEBUG_CPPFLAGS =
-
-RELEASE_CPPFLAGS =
+RELEASE_CFLAGS = -O3 -flto
 
 if RELEASE_ENABLED
-
+	AM_CFLAGS = $(CORE_CFLAGS) $(RELEASE_CFLAGS)
+else
+	AM_CFLAGS = $(CORE_CFLAGS) $(DEBUG_CFLAGS)	
 endif
-
-AM_CPPFLAGS =
-AM_CFLAGS =
-AM_LDFLAGS =
 
 
 bin_PROGRAMS =
@@ -27,6 +26,7 @@ if BUILDING_FOR_POSIX
 endif
 
 if BUILDING_FOR_WINDOWS
+# May have to add specific flags for mingw to get support for certain features, e.g. threads
 	bin_PROGRAMS += rlayout_win
 	rlayout_win_SOURCES += $(CORE_SOURCES) $(WINDOWS_SOURCES)
 endif

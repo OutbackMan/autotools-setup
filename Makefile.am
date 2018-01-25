@@ -13,8 +13,7 @@ AM_CFLAGS =
 AM_LDFLAGS =
 
 
-
-
+bin_PROGRAMS =
 
 CORE_SOURCES += \
 
@@ -22,14 +21,12 @@ POSIX_SOURCES += \
 
 WINDOWS_SOURCES += \
 
-bin_PROGRAMS=rlayout
-
-rlayout_SOURCES = CORE_SOURCES
-
 if BUILDING_FOR_POSIX
-	rlayout_SOURCES += POSIX_SOURCES
+	bin_PROGRAMS += rlayout
+	rlayout_SOURCES += $(CORE_SOURCES) $(POSIX_SOURCES)
 endif
 
 if BUILDING_FOR_WINDOWS
-	rlayout_SOURCES += WINDOWS_SOURCES
+	bin_PROGRAMS += rlayout_win
+	rlayout_win_SOURCES += $(CORE_SOURCES) $(WINDOWS_SOURCES)
 endif

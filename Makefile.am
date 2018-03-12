@@ -33,3 +33,18 @@ if BUILDING_FOR_WINDOWS
 endif
 
 # Use mingw as cygwin is only a compatibility layer, i.e. requires applications to be shipped with cygwin.dll
+
+  1 # To create libraries to test
+  2 bin_PROGRAMS = main
+  3 main_SOURCES = main.c
+  4
+  5 main_LDADD = libmoney.la
+  6
+  7 lib_LTLIBRARIES = libmoney.la
+  8 libmoney_la_SOURCES = money.c money.h
+  9
+ 10 TESTS = check_money
+ 11 check_PROGRAMS = check_money
+ 12 check_money_SOURCES = test-money.c money.h
+ 13 check_money_CPPFLAGS = @CHECK_CFLAGS@
+ 14 check_money_LDADD = libmoney.la @CHECK_LIBS@                                                  

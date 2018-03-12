@@ -37,3 +37,9 @@ esac
 
 AM_CONDITIONAL([BUILDING_FOR_POSIX], [test "${building_for_posix}" = "yes"])
 AM_CONDITIONAL([BUILDING_FOR_WINDOWS], [test "${building_for_windows}" = "yes"])
+
+AC_ENABLE_SHARED
+AC_ENABLE_STATIC
+AC_PROG_LIBTOOL
+LT_PREREQ([])
+LT_INIT

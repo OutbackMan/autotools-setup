@@ -6,6 +6,7 @@ AC_CANONICAL_HOST
 AC_PROG_CC
 AC_OUTPUT
 
+AC_CHECK_PROGS([SPHINXBUILD], [sphinx-build sphinx-build2], [no])
 
 AC_ARG_ENABLE([release], [AS_HELP_STRING([--enable-release], [Enable release mode compilation])],
 			[enable_release="yes"], 

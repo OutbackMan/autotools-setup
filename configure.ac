@@ -39,6 +39,8 @@ esac
 AM_CONDITIONAL([BUILDING_FOR_POSIX], [test "${building_for_posix}" = "yes"])
 AM_CONDITIONAL([BUILDING_FOR_WINDOWS], [test "${building_for_windows}" = "yes"])
 
+# To simulate obj/ for standalone Makefile, run ./configure inside of build/ folder
+
 AC_ENABLE_SHARED
 AC_ENABLE_STATIC
 AC_PROG_LIBTOOL
